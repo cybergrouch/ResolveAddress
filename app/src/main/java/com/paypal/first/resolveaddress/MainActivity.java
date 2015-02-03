@@ -1,5 +1,6 @@
 package com.paypal.first.resolveaddress;
 
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,5 +46,20 @@ public class MainActivity extends ActionBarActivity {
     public void doResolveAddress(View v) {
         EditText input = (EditText) findViewById(R.id.addressText);
         Log.i(TAG, input.getText().toString());
+    }
+
+    class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            // write code to do network call
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            // will run on user interface thread
+            super.onPostExecute(s);
+        }
     }
 }
