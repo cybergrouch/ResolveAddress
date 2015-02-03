@@ -2,11 +2,16 @@ package com.paypal.first.resolveaddress;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    public static final String TAG = "ResolveAddress-LOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +40,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void doResolveAddress(View v) {
+        EditText input = (EditText) findViewById(R.id.addressText);
+        Log.i(TAG, input.getText().toString());
     }
 }
