@@ -99,18 +99,11 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
 
-            return response.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            // will run on user interface thread
-            super.onPostExecute(s);
 
             StringBuffer addressBuffer = new StringBuffer();
 
             try {
-                JSONObject jsonObject = new JSONObject(s);
+                JSONObject jsonObject = new JSONObject(response.toString());
                 JSONArray resArray = (JSONArray) jsonObject.get("results");
                 JSONArray addresses = (JSONArray) ((JSONObject) resArray.get(0)).get("address_components");
                 for (int i = 0; i < addresses.length(); i++) {
@@ -120,8 +113,16 @@ public class MainActivity extends ActionBarActivity {
                 Log.e(TAG, "Error parsing result", e);
             }
 
+            return addressBuffer.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            // will run on user interface thread
+            super.onPostExecute(s);
+
             TextView view = (TextView) findViewById(R.id.resultView);
-            view.setText(addressBuffer.toString());
+            view.setText(s);
         }
 
     }
